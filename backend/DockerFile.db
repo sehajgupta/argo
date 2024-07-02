@@ -1,0 +1,9 @@
+FROM postgres:13
+
+ENV POSTGRES_USER="youruser"
+ENV POSTGRES_PASSWORD="yourpassword"
+ENV POSTGRES_DB="yourdb"
+
+COPY sql/init.sql /docker-entrypoint-initdb.d/
+COPY wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
