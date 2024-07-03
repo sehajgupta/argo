@@ -10,10 +10,12 @@ CREATE TABLE IF NOT EXISTS trips (
     status VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS buses (
+CREATE TABLE IF NOT EXISTS vehicles (
     id SERIAL PRIMARY KEY,
     trip_id INT REFERENCES trips(id),
-    eta TIMESTAMP,
     current_location VARCHAR(255),
-    status VARCHAR(50) NOT NULL
+    eta TIMESTAMP,
+    status VARCHAR(50) NOT NULL,
+    driver_info VARCHAR(255),
+    license_plate VARCHAR(255)
 );

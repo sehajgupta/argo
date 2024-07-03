@@ -1,8 +1,8 @@
 package main
 
 import (
+	"trippin/internal"
 	"trippin/db"
-	"trippin/routes"
 )
 
 func main() {
@@ -10,6 +10,10 @@ func main() {
 	db.Init()
 	defer db.DB.Close()
 
-	// setup routes
-	routes.SetupRouter().Run(":8080")
+	// init server
+	server := server.NewServer(db.DB)
+
+	server.SetupRouterGroup(server.Router)
+	// serve routes
+	server.Router.Run(":8080")
 }
